@@ -23,7 +23,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'slug', 'description', 'posts_count']
 
     def get_posts_count(self, obj):
-        return obj.post_set.count()
+        return Post.objects.filter(category=obj, status="published").count()
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class TagSerializer(serializers.ModelSerializer):
         return obj.post_set.count()
 
 
-class RecursiveCommentSerializer(serializers.ModelSerializer):
+class CommentCreateSerializer(serializers.ModelSerializer):
     replies = serializers.SerializerMethodField()
 
     class Meta:
@@ -47,7 +47,7 @@ class RecursiveCommentSerializer(serializers.ModelSerializer):
     def get_replies(self, obj):
         if obj.level < 3:
             children = obj.children.all()
-            return RecursiveCommentSerializer(children, many=True).data
+            return CommentCreateSerializer(children, many=True).data
         return []
 
     def create(self, validated_data):
