@@ -2,7 +2,7 @@
 
 # 🚀 **Blog API** - Django REST Framework  
 
-![Blog API](https://media.giphy.com/media/RbDKaczqWovIugyJmW/giphy.gif)  
+![Blog API](https://i.gifer.com/3AyY.gif)  
 
 📢 A powerful and scalable **Blog API** built with Django and Django REST Framework (DRF).  
 Manage **posts, categories, tags, and comments** effortlessly with a well-structured API.  
